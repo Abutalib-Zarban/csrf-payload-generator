@@ -17,10 +17,28 @@ Features
     - Output: Produces an HTML file containing the generated payloads for execution.
 
 * Usage
-    1- Clone the repository:
+  
+  1 - Clone the repository:
   
 ---
   ```
 git clone https://github.com/Abutalib-Zarban/csrf-payload-generator.git
 
 ```
+ 2 - Navigate to the directory:
+  ```
+cd csrf-payload-generator
+
+```
+
+ 3 - Run the script with a Burp Suite HTTP request file:
+
+```
+python3 csrf_generator.py request.txt
+
+
+```
+ 
+
+ 
+
