@@ -31,13 +31,27 @@ cd csrf-payload-generator
 
 ```
 
- 3 - Run the script with a Burp Suite HTTP request file:
+ 3 - Run the script with a  HTTP request file:
 
 ```
 python3 csrf_generator.py request.txt
 
 
 ```
+
+4- Select the desired CSRF payload method:
+
+1: iframe
+2: fetch
+3: onerror
+4: form
+5: All methods
+View the output in the csrf_payloads.html file.
+
+
+* Requirements
+    - Python 3.x: The script is written in Python and requires Python 3.x.
+
  
 
  
