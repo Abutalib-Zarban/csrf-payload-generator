@@ -98,6 +98,8 @@ new_password=newpassword456
 </html> 
 ```
 
-  
+------
+* Disclaimer
+This tool is intended for educational purposes and authorized security testing only. Misuse of this tool may result in legal consequences. Always obtain proper permission before conducting any tests.
  
 
