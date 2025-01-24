@@ -41,11 +41,11 @@ python3 csrf_generator.py request.txt
 
 4- Select the desired CSRF payload method:
 
-1: iframe
-2: fetch
-3: onerror
-4: form
-5: All methods
+    1: iframe
+    2: fetch
+    3: onerror
+    4: form
+    5: All methods
 View the output in the csrf_payloads.html file.
 
 
