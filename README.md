@@ -10,7 +10,7 @@ Features
     - fetch: Uses the Fetch API to execute CSRF requests programmatically.
     - onerror: Leverages the onerror event of an empty image tag for CSRF execution.
     - form: Auto-submitting HTML forms for CSRF attacks.
-    - XHR Requests 
+    - XHR Requests: Uses XMLHttpRequest to send CSRF payloads.
 
 * HTML Output:
     - Generates an easy-to-use HTML file containing all the CSRF payloads for testing.
