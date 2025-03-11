@@ -60,6 +60,7 @@ View the output in the csrf_payloads.html file.
  
 ---------------------------
 * Request sample :
+* NOTE : If you are using burp , Copy the contetnt of the request and save it to request.txt file , as the tool still not supporting saved items from burp (Working on it )
 ```
 POST /email/change HTTP/1.1
 Host: vulnerable-website.com
